@@ -10,14 +10,14 @@
     <div class="container">
         <header>
             <h1>Wire Order Entry Form</h1>
-            <p>Fill out the specifications below to generate your supplier order.</p>
+            <p>Add each wire pull to your order, then copy the complete summary for your supplier.</p>
         </header>
 
         <main>
             <form id="wireOrderForm">
                 <div class="form-group">
-                    <label for="wireRouteName">Wire Route Name</label>
-                    <input type="text" id="wireRouteName" placeholder="e.g., panel 1" required>
+                    <label for="pullId">Pull ID</label>
+                    <input type="text" id="pullId" placeholder="e.g., panel 1" required>
                 </div>
 
                 <div class="form-group">
@@ -51,6 +51,15 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="wireMaterial">Conductor Material</label>
+                    <select id="wireMaterial" required>
+                        <option value="">Select Conductor Material</option>
+                        <option value="Copper">Copper</option>
+                        <option value="Aluminum">Aluminum</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
                     <label for="wireLength">Wire Length (ft)</label>
                     <input type="number" id="wireLength" placeholder="e.g., 150" required>
                 </div>
@@ -59,27 +68,64 @@
                     <label for="wireColors">Wire Colors</label>
                     <select id="wireColors" required>
                         <option value="">Select Color Configuration</option>
-                        <option value="3-wire: B/R/B">3-wire: B/R/B</option>
-                        <option value="3-wire: B/R/B/G">3-wire: B/R/B/G</option>
-                        <option value="3-wire: B/O/Y">3-wire: B/O/Y</option>
-                        <option value="3-wire: B/O/Y/G">3-wire: B/O/Y/G</option>
-                        <option value="4-wire: B/R/B/W">4-wire: B/R/B/W</option>
-                        <option value="4-wire: B/R/B/W/G">4-wire: B/R/B/W/G</option>
-                        <option value="4-wire: B/O/Y/GRAY">4-wire: B/O/Y/GRAY</option>
-                        <option value="4-wire: B/O/Y/GRAY/G">4-wire: B/O/Y/GRAY/G</option>
+                        <option value="3-wire: Black / Red / Blue">3-wire: Black / Red / Blue</option>
+                        <option value="3-wire: Black / Red / Blue / Green">3-wire: Black / Red / Blue / Green</option>
+                        <option value="3-wire: Brown / Orange / Yellow">3-wire: Brown / Orange / Yellow</option>
+                        <option value="3-wire: Brown / Orange / Yellow / Green">3-wire: Brown / Orange / Yellow / Green</option>
+                        <option value="4-wire: Black / Red / Blue / White">4-wire: Black / Red / Blue / White</option>
+                        <option value="4-wire: Black / Red / Blue / White / Green">4-wire: Black / Red / Blue / White / Green</option>
+                        <option value="4-wire: Brown / Orange / Yellow / Gray">4-wire: Brown / Orange / Yellow / Gray</option>
+                        <option value="4-wire: Brown / Orange / Yellow / Gray / Green">4-wire: Brown / Orange / Yellow / Gray / Green</option>
                     </select>
                 </div>
 
                 <div class="form-group hidden" id="greenWireSizeGroup">
                     <label for="greenWireSize">Green Wire Size</label>
-                    <input type="text" id="greenWireSize" placeholder="e.g., #6 AWG">
+                    <select id="greenWireSize">
+                        <option value="">Select Green Wire Size</option>
+                        <option value="#12">#12</option>
+                        <option value="#10">#10</option>
+                        <option value="#8">#8</option>
+                        <option value="#6">#6</option>
+                        <option value="#4">#4</option>
+                        <option value="#3">#3</option>
+                        <option value="#2">#2</option>
+                        <option value="#1">#1</option>
+                        <option value="1/0">1/0</option>
+                        <option value="2/0">2/0</option>
+                        <option value="3/0">3/0</option>
+                        <option value="4/0">4/0</option>
+                        <option value="250 MCM">250 MCM</option>
+                        <option value="500 MCM">500 MCM</option>
+                    </select>
                 </div>
 
-                <button type="submit" class="submit-btn">Generate Order</button>
+                <button type="submit" class="submit-btn">Add Pull to Order</button>
             </form>
 
+            <fieldset class="preparation-options">
+                <legend>Wire Preparation</legend>
+                <label class="preparation-option">
+                    <input type="checkbox" name="preparation" value="Parallel">
+                    <span>Parallel</span>
+                </label>
+                <label class="preparation-option">
+                    <input type="checkbox" name="preparation" value="Individual Spools/Rolls">
+                    <span>Individual Spools/Rolls</span>
+                </label>
+                <label class="preparation-option">
+                    <input type="checkbox" name="preparation" value="Taped or Colored">
+                    <span>Taped or Colored</span>
+                </label>
+                <label class="preparation-option">
+                    <input type="checkbox" name="preparation" value="Colored Only">
+                    <span>Colored Only</span>
+                </label>
+            </fieldset>
+
             <div id="outputSection" class="hidden">
-                <h2>Generated Order Summary</h2>
+                <h2>Order Summary (<span id="pullCount">0 pulls</span>)</h2>
+                <ol id="orderPullList"></ol>
                 <textarea id="orderSummaryText" readonly></textarea>
                 <button id="copyBtn" class="copy-btn">Copy Order to Clipboard</button>
             </div>

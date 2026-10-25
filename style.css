@@ -57,7 +57,7 @@ input:focus, select:focus {
     outline: none;
 }
 
-.submit-btn, .copy-btn {
+.submit-btn, .copy-btn, .remove-pull-btn {
     background-color: #1a73e8;
     color: white;
     border: none;
@@ -71,12 +71,37 @@ input:focus, select:focus {
     transition: background-color 0.2s;
 }
 
-.submit-btn:hover, .copy-btn:hover {
+.submit-btn:hover, .copy-btn:hover, .remove-pull-btn:hover {
     background-color: #1557b0;
 }
 
 .hidden {
     display: none;
+}
+
+.preparation-options {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 20px;
+    padding: 16px;
+}
+
+.preparation-options legend {
+    font-weight: bold;
+    padding: 0 6px;
+}
+
+.preparation-option {
+    align-items: center;
+    display: flex;
+    font-weight: normal;
+    gap: 10px;
+    margin: 10px 0 0;
+}
+
+.preparation-option input {
+    flex: 0 0 auto;
+    width: auto;
 }
 
 #outputSection {
@@ -91,9 +116,39 @@ input:focus, select:focus {
     color: #333;
 }
 
+#orderPullList {
+    list-style: none;
+    margin-bottom: 16px;
+}
+
+#orderPullList li {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 12px;
+    padding: 12px;
+}
+
+#orderPullList pre {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+}
+
+.remove-pull-btn {
+    background-color: #6c757d;
+    font-size: 14px;
+    padding: 8px 12px;
+    width: auto;
+}
+
+.remove-pull-btn:hover {
+    background-color: #545b62;
+}
+
 textarea {
     width: 100%;
-    height: 120px;
+    min-height: 180px;
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 4px;
